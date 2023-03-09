@@ -2,8 +2,9 @@ package com.dsu.tictactoe.view;
 
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.interfaces.BoardViewInterface;
 
-public class BoardView {
+public class BoardView implements BoardViewInterface{
 
     public void showBoard(Mark[][] matrixMarks) {
         String firstSpace = "    ";

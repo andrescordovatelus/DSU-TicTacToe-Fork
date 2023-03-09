@@ -5,6 +5,7 @@ import java.util.List;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
+import com.dsu.tictactoe.utils.SingletonViews;
 import com.dsu.tictactoe.view.player.PlayerManagerView;
 
 public class PlayerManagerController {
@@ -13,7 +14,7 @@ public class PlayerManagerController {
     private PlayerManagerView playerManagerView;
 
     public PlayerManagerController(List<Player> players) {
-        playerManagerView = new PlayerManagerView();
+        playerManagerView = SingletonViews.getInstance().getPlayerManagerView();
         this.players = players;
     }
 

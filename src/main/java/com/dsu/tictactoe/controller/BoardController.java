@@ -5,6 +5,7 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.board.TTTLine;
+import com.dsu.tictactoe.utils.SingletonViews;
 import com.dsu.tictactoe.view.BoardView;
 
 public class BoardController implements ReadyToPlay {
@@ -13,7 +14,7 @@ public class BoardController implements ReadyToPlay {
     private BoardView boardView;
 
     public BoardController() {
-        this.boardView = new BoardView();
+        this.boardView = SingletonViews.getInstance().getBoardView();
     }
 
 

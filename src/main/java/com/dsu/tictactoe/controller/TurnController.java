@@ -6,6 +6,7 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
+import com.dsu.tictactoe.utils.SingletonViews;
 import com.dsu.tictactoe.controller.player.PlayerController;
 import com.dsu.tictactoe.view.TurnView;
 
@@ -17,7 +18,7 @@ public class TurnController implements ReadyToPlay {
     private Turn turn;
 
     public TurnController(){
-        turnView = new TurnView();
+        turnView = SingletonViews.getInstance().getTurnView();
     }
 
     

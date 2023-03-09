@@ -8,10 +8,9 @@ import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.interfaces.playerInterfaces.PlayerManagerViewInterface;
 
-public class PlayerManagerView {
-
-    
+public class PlayerManagerView implements PlayerManagerViewInterface {
 
     public Player getNewPlayer(PlayerError playerError, Player newPlayer, PlayerType[] playerTypevalues) {
         if (PlayerError.NO_ERROR != playerError) {
@@ -55,8 +54,8 @@ public class PlayerManagerView {
         } while (selectedPlayers.size() < numbePlayers);
         return selectedPlayers;
     }
-    
-    private ArrayList<Player> getArrayListPlayers(List<Player> allPlayers ){
+
+    private ArrayList<Player> getArrayListPlayers(List<Player> allPlayers) {
         ArrayList<Player> newListPlayers = new ArrayList<>();
         for (Player player : allPlayers) {
             newListPlayers.add(player);
@@ -80,5 +79,4 @@ public class PlayerManagerView {
         Console.printWhiteLine();
         Console.readString("Enter to continue");
     }
-
 }

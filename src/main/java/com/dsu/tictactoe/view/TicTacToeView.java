@@ -2,8 +2,9 @@ package com.dsu.tictactoe.view;
 
 import com.dsu.tictactoe.model.Result;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.interfaces.TicTacTocViewInterface;
 
-public class TicTacToeView {
+public class TicTacToeView implements TicTacTocViewInterface {
 
     public void showInstruccions() {
         Console.printTitle("TicTacToe");
