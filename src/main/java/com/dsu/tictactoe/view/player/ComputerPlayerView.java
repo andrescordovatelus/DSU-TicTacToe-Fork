@@ -2,32 +2,39 @@ package com.dsu.tictactoe.view.player;
 
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.PutMarkError;
-import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.utils.ConsoleFactory;
+import com.dsu.tictactoe.utils.ConsoleInterface;
 
 public class ComputerPlayerView extends PlayerView {
 
+    private ConsoleInterface console;
+
+    public ComputerPlayerView() {
+        this.console = ConsoleFactory.console;
+    }
+
     @Override
     public String getName( String message) {
-        Console.readString("Thinking the name, press enter please . . . ");
+        console.readString("Thinking the name, press enter please . . . ");
         String name = ComputerPlayerView.getAlphaNumericString(10);
-        Console.readString("The name is "+name+" and means nothin xD. Enter to continue. . .");
+        console.readString("The name is "+name+" and means nothin xD. Enter to continue. . .");
         return name ;
     }
 
     @Override
     public Coordinate getCoordinate(PutMarkError putMarkError) {
         if (putMarkError!= PutMarkError.NOT_ERROR){
-            Console.printLine("Oh no!, an error :P");
+            console.printLine("Oh no!, an error :P");
         }
         return null;
     }
 
     public void turnFinish(){
-        Console.readString("Enter to continue . . . ");
+        console.readString("Enter to continue . . . ");
     }
 
     public void showThinkingAboutTheCoordinate(int x, int y ){
-        Console.printLine("My possible coordinate is: x"+x+" y: "+y);
+        console.printLine("My possible coordinate is: x"+x+" y: "+y);
     }
 
 

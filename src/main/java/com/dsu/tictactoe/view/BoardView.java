@@ -1,10 +1,17 @@
 package com.dsu.tictactoe.view;
 
 import com.dsu.tictactoe.model.board.Mark;
-import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.utils.ConsoleFactory;
+import com.dsu.tictactoe.utils.ConsoleInterface;
 import com.dsu.tictactoe.view.interfaces.BoardViewInterface;
 
 public class BoardView implements BoardViewInterface{
+
+    private ConsoleInterface console;
+
+    public BoardView() {
+        this.console = ConsoleFactory.console;
+    }
 
     public void showBoard(Mark[][] matrixMarks) {
         String firstSpace = "    ";
@@ -20,14 +27,14 @@ public class BoardView implements BoardViewInterface{
                 }
             }
         }
-        Console.printWhiteLine();
-        Console.printLine(header);
+        console.printWhiteLine();
+        console.printLine(header);
         for (int i = 0; i < rows.length; i++) {
-            Console.printLine(rows[i]);
+            console.printLine(rows[i]);
             if (i<(rows.length-1)){
-                Console.printLine(rowDiv);
+                console.printLine(rowDiv);
             }
         }
-        Console.printWhiteLine();
+        console.printWhiteLine();
     }
 }

@@ -7,29 +7,36 @@ import java.util.List;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.utils.ConsoleFactory;
+import com.dsu.tictactoe.utils.ConsoleInterface;
 import com.dsu.tictactoe.view.interfaces.playerInterfaces.PlayerManagerViewInterface;
 
 public class PlayerManagerView implements PlayerManagerViewInterface {
 
+    private ConsoleInterface console;
+
+    public PlayerManagerView() {
+        this.console = ConsoleFactory.console;
+    }
+
     public Player getNewPlayer(PlayerError playerError, Player newPlayer, PlayerType[] playerTypevalues) {
         if (PlayerError.NO_ERROR != playerError) {
-            Console.printLine("Error: " + playerError.getDescription());
+            console.printLine("Error: " + playerError.getDescription());
             if (newPlayer != null) {
-                Console.printLine("     " + newPlayer.toString());
-                Console.printLine("Create another player.\n");
+                console.printLine("     " + newPlayer.toString());
+                console.printLine("Create another player.\n");
             }
         }
         PlayerType playerType;
-        Console.printTitle("New player");
+        console.printTitle("New player");
 
         do {
-            Console.printWhiteLine();
-            Console.printLine("Select the player type: ");
+            console.printWhiteLine();
+            console.printLine("Select the player type: ");
             for (int i = 0; i < playerTypevalues.length; i++) {
-                Console.printLine(i + ") " + playerTypevalues[i].name().toLowerCase());
+                console.printLine(i + ") " + playerTypevalues[i].name().toLowerCase());
             }
-            playerType = PlayerType.getPlayerType(Console.readInt("Select the type: "));
+            playerType = PlayerType.getPlayerType(console.readInt("Select the type: "));
         } while (playerType == null);
         PlayerView newPlayerView = PlayerViewFactory.getPlayerView(playerType);
         String name = newPlayerView.getName("Name for the new player: ");
@@ -44,9 +51,9 @@ public class PlayerManagerView implements PlayerManagerViewInterface {
         List<Player> selectedPlayers = new LinkedList<>();
         int numberSelected = 0;
         do {
-            Console.printTitle("Select the " + (selectedPlayers.size() + 1));
+            console.printTitle("Select the " + (selectedPlayers.size() + 1));
             printAllPlayers(allNewGamePlayers);
-            numberSelected = Console.readInt("Select the player you want to use?");
+            numberSelected = console.readInt("Select the player you want to use?");
             if (numberSelected >= 0 && numberSelected < allNewGamePlayers.size()) {
                 selectedPlayers.add(allNewGamePlayers.get(numberSelected));
                 allNewGamePlayers.remove(numberSelected);
@@ -65,18 +72,18 @@ public class PlayerManagerView implements PlayerManagerViewInterface {
 
     private void printAllPlayers(List<Player> players) {
         if (players.size() == 0) {
-            Console.printTitle("You don't have registered players yet.");
+            console.printTitle("You don't have registered players yet.");
             return;
         }
         for (int i = 0; i < players.size(); i++) {
-            Console.printLine(i + ") " + players.get(i));
+            console.printLine(i + ") " + players.get(i));
         }
     }
 
     public void showAllPlayers(List<Player> players) {
-        Console.printTitle("Registered players");
+        console.printTitle("Registered players");
         printAllPlayers(players);
-        Console.printWhiteLine();
-        Console.readString("Enter to continue");
+        console.printWhiteLine();
+        console.readString("Enter to continue");
     }
 }
